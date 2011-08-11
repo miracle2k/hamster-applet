@@ -130,7 +130,11 @@ class Chart(graphics.Scene):
                 normalized = value / max_val
             else:
                 normalized = 0
-            bar = Bar(key, locale.format(self.value_format, value), normalized, self.label_color)
+            bar = Bar(key, "%s (%s)" % (
+                    locale.format(self.value_format, value),
+                    stuff.format_duration(value*60),
+                ),
+                normalized, self.label_color)
             bar.interactive = self.graph_interactive
 
             if key in bars:
